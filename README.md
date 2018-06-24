@@ -18,5 +18,5 @@ Paging library <br />
 ## Extra Libraries Used
 [FastAndroidNetworking](https://github.com/amitshekhariitbhu/Fast-Android-Networking) For Networking stuff <br />
 [FastSave](https://github.com/yehiahd/FastSave-Android) For Easy Access to SP <br />
-[Database Debugger](https://github.com/amitshekhariitbhu/Android-Debug-Database) For Debugging Databse <br />
+[Database Debugger](https://github.com/amitshekhariitbhu/Android-Debug-Database) For Debugging Database <br />
 [Picasso](https://github.com/square/picasso) For Image Loading <br />
