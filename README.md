@@ -3,7 +3,7 @@
 This Sample project is created to prove the usage some of the latest Android Technologies and Concepts
 
 ### Technologies / Concepts Used
-* **Note**
+* **Note :** <br />
 Not all things mentioned below exists now in the project but it still in development process.
 
 Kotlin <br />
@@ -25,3 +25,6 @@ Paging library <br />
 - [Twitter](https://twitter.com/YehiaHd)
 - [Facebook](https://www.facebook.com/yehia.hd)
 - [LinkedIn](https://www.linkedin.com/in/yehiahd/)
+
+* **Suggestions ,ideas and issues are very welcomed**
+
