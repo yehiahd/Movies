@@ -27,5 +27,5 @@ Paging library <br />
 - [LinkedIn](https://www.linkedin.com/in/yehiahd/)
 
 #### Contribution
-- Suggestions ,ideas and issues are very welcomed**
+- Suggestions ,ideas, Pull and issues are very welcomed
 
