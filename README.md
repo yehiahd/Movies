@@ -6,17 +6,17 @@ This Sample project is created to prove the usage some of the latest Android Tec
 * **Note**
 Not all things mentioned below exists now in the project but it still in development process.
 
-Kotlin
-MVVM
-RxJava
-Dagger2
-Room
-ViewModel
-Data Binding
-Paging library
+Kotlin <br />
+MVVM <br />
+RxJava <br />
+Dagger2 <br />
+Room <br />
+ViewModel <br />
+Data Binding <br />
+Paging library <br />
 
 ## Extra Libraries Used
-[FastAndroidNetworking](https://github.com/amitshekhariitbhu/Fast-Android-Networking) For Networking stuff <Enter>
-[FastSave](https://github.com/yehiahd/FastSave-Android) For Easy Access to SP <Enter>
-[Database Debugger](https://github.com/amitshekhariitbhu/Android-Debug-Database) For Debugging Databse <Enter>
-[Picasso](https://github.com/square/picasso) For Image Loading <Enter>
+[FastAndroidNetworking](https://github.com/amitshekhariitbhu/Fast-Android-Networking) For Networking stuff <br />
+[FastSave](https://github.com/yehiahd/FastSave-Android) For Easy Access to SP <br />
+[Database Debugger](https://github.com/amitshekhariitbhu/Android-Debug-Database) For Debugging Databse <br />
+[Picasso](https://github.com/square/picasso) For Image Loading <br />
