@@ -20,3 +20,8 @@ Paging library <br />
 [FastSave](https://github.com/yehiahd/FastSave-Android) For Easy Access to SP <br />
 [Database Debugger](https://github.com/amitshekhariitbhu/Android-Debug-Database) For Debugging Database <br />
 [Picasso](https://github.com/square/picasso) For Image Loading <br />
+
+### Contact
+- [Twitter](https://twitter.com/YehiaHd)
+- [Facebook](https://www.facebook.com/yehia.hd)
+- [LinkedIn](https://www.linkedin.com/in/yehiahd/)
