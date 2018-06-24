@@ -26,5 +26,6 @@ Paging library <br />
 - [Facebook](https://www.facebook.com/yehia.hd)
 - [LinkedIn](https://www.linkedin.com/in/yehiahd/)
 
-* **Suggestions ,ideas and issues are very welcomed**
+#### Contribution
+- Suggestions ,ideas and issues are very welcomed**
 
