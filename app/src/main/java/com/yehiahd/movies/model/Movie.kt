@@ -8,11 +8,11 @@ data class MoviesResponse(@SerializedName("results") val movies: List<Movie>,
                           @SerializedName("total_results") val totalResults: Int)
 
 data class Movie(@SerializedName("vote_average") val voteAverage: Double,
-                 @SerializedName("backdrop_path") val backdropPath: String,
+                 @SerializedName("backdrop_path") var backdropPath: String,
                  @SerializedName("id") val id: Int,
                  @SerializedName("title") val title: String,
                  @SerializedName("popularity") val popularity: Double,
-                 @SerializedName("poster_path") val posterPath: String,
+                 @SerializedName("poster_path") var posterPath: String,
                  @SerializedName("overview") val overview: String,
                  @SerializedName("release_date") val releaseDate: String,
                  @SerializedName("original_title") val originalTitle: String,
