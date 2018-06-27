@@ -11,4 +11,8 @@ object Constant {
         const val API_KEY_VALUE = "6ba7581f4330b87ceabc4ef8212ed72b"
         const val BASE_IMAGE_URL = "http://image.tmdb.org/t/p/w185/"
     }
+
+    object Extra {
+        const val MOVIE = "movie"
+    }
 }

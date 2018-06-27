@@ -1,5 +1,6 @@
 package com.yehiahd.movies.ui.mainscreen
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
 import android.view.Menu
@@ -8,13 +9,16 @@ import android.view.View
 import android.widget.Toast
 import com.androidnetworking.error.ANError
 import com.yehiahd.movies.R
+import com.yehiahd.movies.callback.OnMovieClickListener
+import com.yehiahd.movies.model.Movie
 import com.yehiahd.movies.ui.base.BaseActivity
+import com.yehiahd.movies.ui.detailscreen.DetailScreen
 import com.yehiahd.movies.util.Constant
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
 
-class MainActivity : BaseActivity() {
+class MainActivity : BaseActivity(), OnMovieClickListener {
 
     @Inject
     lateinit var mMainViewModel: MainViewModel
@@ -25,6 +29,8 @@ class MainActivity : BaseActivity() {
     @Inject
     lateinit var gridLayoutManager: GridLayoutManager
 
+    private lateinit var adapter: MoviesAdapter
+
     override fun onCreate(savedInstanceState: Bundle?) {
         getActivityComponent().inject(mainActivity = this)
         super.onCreate(savedInstanceState)
@@ -32,8 +38,12 @@ class MainActivity : BaseActivity() {
         init()
     }
 
+
     private fun init() {
         recyclerMovies.layoutManager = gridLayoutManager
+        adapter = MoviesAdapter(this, ArrayList())
+        adapter.onMovieClickListener = this
+        recyclerMovies.adapter = adapter
         getMoviesByType(Constant.Api.POPULAR)
 
     }
@@ -67,11 +77,16 @@ class MainActivity : BaseActivity() {
         mMainViewModel.getMoviesByType(type)
                 .doOnSubscribe { compositeDisposable.add(it) }
                 .subscribe({
-                    recyclerMovies.adapter = MoviesAdapter(this, it)
+                    adapter.update(it as ArrayList<Movie>)
                     progressBar.visibility = View.GONE
                 }, {
                     Toast.makeText(this, (it as ANError).errorDetail, Toast.LENGTH_SHORT).show()
                 })
+    }
+
+    override fun onMovieClicked(movie: Movie) {
+        startActivity(Intent(this, DetailScreen::class.java)
+                .putExtra(Constant.Extra.MOVIE, movie))
     }
 
     override fun onPause() {
