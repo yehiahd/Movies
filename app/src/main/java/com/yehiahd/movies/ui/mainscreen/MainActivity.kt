@@ -1,5 +1,6 @@
 package com.yehiahd.movies.ui.mainscreen
 
+import android.arch.lifecycle.ViewModelProviders
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
@@ -20,8 +21,10 @@ import javax.inject.Inject
 
 class MainActivity : BaseActivity(), OnMovieClickListener {
 
-    @Inject
     lateinit var mMainViewModel: MainViewModel
+
+    @Inject
+    lateinit var mainViewModelProvider: MainViewModelProvider
 
     @Inject
     lateinit var compositeDisposable: CompositeDisposable
@@ -40,11 +43,18 @@ class MainActivity : BaseActivity(), OnMovieClickListener {
 
 
     private fun init() {
+        mMainViewModel = ViewModelProviders.of(this, mainViewModelProvider).get(MainViewModel::class.java)
         recyclerMovies.layoutManager = gridLayoutManager
         adapter = MoviesAdapter(this, ArrayList())
         adapter.onMovieClickListener = this
         recyclerMovies.adapter = adapter
-        getMoviesByType(Constant.Api.POPULAR)
+
+        if (mMainViewModel.movies == null) {
+            getMoviesByType(Constant.Api.POPULAR)
+        } else {
+            adapter.update(mMainViewModel.movies as ArrayList<Movie>)
+        }
+
 
     }
 
