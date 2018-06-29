@@ -103,7 +103,9 @@ class MainActivity : BaseActivity(), OnMovieClickListener {
                     subscription.cancel()
                     adapter.update(it as ArrayList<Movie>)
                     progressBar.visibility = View.GONE
+                    recyclerMovies.scrollToPosition(0)
                 }) {
+                    progressBar.visibility = View.GONE
                     if (it is ANError)
                         Toast.makeText(this, it.errorDetail, Toast.LENGTH_SHORT).show()
                     else
