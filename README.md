@@ -1,4 +1,4 @@
-# Movies
+# Movies-Offline
 
 This Sample project is created to prove the usage some of the latest Android Technologies and Concepts
 
