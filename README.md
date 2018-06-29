@@ -5,7 +5,10 @@ This Sample project is created to prove the usage some of the latest Android Tec
 # ScreenShots
 
 <p align="center">
-  
+  <img src="https://github.com/yehiahd/Movies/blob/master/screenshots/01.png" width="200"/>
+  <img src="https://github.com/yehiahd/Movies/blob/master/screenshots/02.png" width="200"/>
+  <img src="https://github.com/yehiahd/Movies/blob/master/screenshots/03.png" width="200"/>
+  <img src="https://github.com/yehiahd/Movies/blob/master/screenshots/04.png" width="200"/>
 </p>
 
 ### Technologies / Concepts Used
