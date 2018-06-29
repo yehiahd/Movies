@@ -12,8 +12,6 @@ This Sample project is created to prove the usage some of the latest Android Tec
 </p>
 
 ### Technologies / Concepts Used
-* **Note :** <br />
-Not all things mentioned below exists now in the project but it still in development process.
 
 Kotlin <br />
 MVVM <br />
