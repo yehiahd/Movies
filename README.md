@@ -13,7 +13,6 @@ Dagger2 <br />
 Room <br />
 ViewModel <br />
 Data Binding <br />
-Paging library <br />
 
 ## Extra Libraries Used
 [FastAndroidNetworking](https://github.com/amitshekhariitbhu/Fast-Android-Networking) For Networking stuff <br />

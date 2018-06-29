@@ -33,6 +33,8 @@ class MainActivity : BaseActivity(), OnMovieClickListener {
 
     private lateinit var subscription: Subscription
 
+    private var moviesType: String = Constant.Api.POPULAR
+
     override fun onCreate(savedInstanceState: Bundle?) {
         getActivityComponent().inject(mainActivity = this)
         super.onCreate(savedInstanceState)
@@ -49,11 +51,12 @@ class MainActivity : BaseActivity(), OnMovieClickListener {
         recyclerMovies.adapter = adapter
 
         if (mMainViewModel.movies == null) {
-            getMoviesByType(Constant.Api.POPULAR)
+            getMoviesByType(moviesType)
         } else {
             adapter.update(mMainViewModel.movies as ArrayList<Movie>)
         }
 
+        tryAgainBtn.setOnClickListener { getMoviesByType(moviesType) }
 
     }
 
@@ -67,12 +70,14 @@ class MainActivity : BaseActivity(), OnMovieClickListener {
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         return when (item?.itemId) {
             R.id.top_rated -> {
-                getMoviesByType(Constant.Api.TOP_RATED)
+                moviesType = Constant.Api.TOP_RATED
+                getMoviesByType(moviesType)
                 true
             }
 
             R.id.popular -> {
-                getMoviesByType(Constant.Api.POPULAR)
+                moviesType = Constant.Api.POPULAR
+                getMoviesByType(moviesType)
                 true
             }
 
@@ -86,15 +91,21 @@ class MainActivity : BaseActivity(), OnMovieClickListener {
         mMainViewModel.getMoviesByType(type)
                 .doOnSubscribe { subscription = it }
                 .subscribe({
+                    if (it.isEmpty()) {
+                        dontKnowLayout.visibility = View.VISIBLE
+                    } else {
+                        dontKnowLayout.visibility = View.GONE
+                        adapter.update(it as ArrayList<Movie>)
+                        recyclerMovies.scrollToPosition(0)
+                    }
                     subscription.cancel()
-                    adapter.update(it as ArrayList<Movie>)
                     progressBar.visibility = View.GONE
-                    recyclerMovies.scrollToPosition(0)
                 }) {
                     progressBar.visibility = View.GONE
-                    if (it is ANError)
-                        Toast.makeText(this, it.errorDetail, Toast.LENGTH_SHORT).show()
-                    else
+                    if (it is ANError) {
+                        if (it.errorCode == 0)
+                            dontKnowLayout.visibility = View.VISIBLE
+                    } else
                         Toast.makeText(this, it.message, Toast.LENGTH_SHORT).show()
                 }
     }
