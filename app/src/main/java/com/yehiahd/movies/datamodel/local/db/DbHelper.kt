@@ -17,4 +17,8 @@ class DbHelper(context: Context) : IDbHelper {
     override fun saveMovies(movies: List<Movie>) {
         moviesDao.insertMovies(movies)
     }
+
+    override fun getFavoriteMovies(): Flowable<List<Movie>> {
+        return moviesDao.getFavoriteMovies()
+    }
 }

@@ -8,4 +8,8 @@ interface IDataManager {
     fun getMoviesFromServerByType(type: String): Flowable<List<Movie>>
 
     fun getMoviesFromDb(type: String): Flowable<List<Movie>>
+
+    fun getFavoriteMovies(): Flowable<List<Movie>>
+
+
 }

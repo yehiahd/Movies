@@ -27,4 +27,12 @@ class MainViewModel constructor(private val dataManager: DataManager) : BaseView
                 .observeOn(AndroidSchedulers.mainThread())
 
     }
+
+    fun getFavoriteMovies(): Flowable<List<Movie>> {
+        return dataManager.getFavoriteMovies()
+                .flatMap {
+                    this.movies = it
+                    Flowable.just(this.movies)
+                }
+    }
 }

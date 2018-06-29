@@ -76,6 +76,11 @@ class MainActivity : BaseActivity(), OnMovieClickListener {
                 true
             }
 
+            R.id.favorite -> {
+                mMainViewModel.getFavoriteMovies()
+                true
+            }
+
             else -> false
         }
     }
