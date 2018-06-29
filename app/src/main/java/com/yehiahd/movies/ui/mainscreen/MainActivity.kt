@@ -21,7 +21,7 @@ import javax.inject.Inject
 
 class MainActivity : BaseActivity(), OnMovieClickListener {
 
-    lateinit var mMainViewModel: MainViewModel
+    private lateinit var mMainViewModel: MainViewModel
 
     @Inject
     lateinit var mainViewModelProvider: MainViewModelProvider
@@ -77,12 +77,22 @@ class MainActivity : BaseActivity(), OnMovieClickListener {
             }
 
             R.id.favorite -> {
-                mMainViewModel.getFavoriteMovies()
+                getFavoriteMovies()
                 true
             }
 
             else -> false
         }
+    }
+
+    private fun getFavoriteMovies() {
+        mMainViewModel.getFavoriteMovies()
+                .subscribe({
+                    if (it.isEmpty())
+                        Toast.makeText(this, "No Favorites Yet!", Toast.LENGTH_LONG).show()
+                }, {
+                    Toast.makeText(this, it.message, Toast.LENGTH_LONG).show()
+                })
     }
 
     private fun getMoviesByType(type: String) {

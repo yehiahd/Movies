@@ -17,7 +17,7 @@ interface MoviesDao {
     @Query("SELECT * FROM ${Constant.DataBase.TABLE_NAME} WHERE ${Constant.DataBase.SECTION_TYPE_COLUMN_NAME} LIKE :moviesSection")
     fun getMoviesBySection(moviesSection: String): Flowable<List<Movie>>
 
-    @Query("SELECT * FROM ${Constant.DataBase.TABLE_NAME} WHERE ${Constant.DataBase.IS_FAVORITE_COLUMN_NAME} = 1")
+    @Query("SELECT * FROM ${Constant.DataBase.TABLE_NAME} WHERE ${Constant.DataBase.IS_FAVORITE_COLUMN_NAME} LIKE 1")
     fun getFavoriteMovies(): Flowable<List<Movie>>
 
 }
