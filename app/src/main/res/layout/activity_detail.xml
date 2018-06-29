@@ -15,11 +15,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true"
-        tools:context=".ui.detailscreen.DetailActivity">
-
+        tools:context=".ui.detailscreen.DetailScreen">
 
         <LinearLayout
-            android:id="@+id/root"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
@@ -57,7 +55,19 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:drawablePadding="4dp"
+                        android:drawableStart="@drawable/star"
+                        android:gravity="center_vertical"
                         android:text="@{String.valueOf(movie.voteAverage)}" />
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:text="@{movie.releaseDate}" />
+
 
                 </LinearLayout>
 
@@ -69,9 +79,10 @@
                 android:layout_height="match_parent"
                 android:layout_margin="8dp"
                 android:text="@{movie.overview}"
-                android:textAppearance="?android:textAppearanceMedium" />
+                android:textAppearance="?android:textAppearanceSmall" />
 
         </LinearLayout>
+
 
     </ScrollView>
 
