@@ -56,12 +56,9 @@ dependencies {
     kapt "android.arch.persistence.room:compiler:$room_version"
     implementation "android.arch.persistence.room:rxjava2:$room_version"
 
-    //Paging
-    implementation "android.arch.paging:rxjava2:1.0.0-rc1"
 
     //ArchComponent
     implementation "android.arch.lifecycle:extensions:$lifecycle_version"
-    implementation "android.arch.lifecycle:reactivestreams:$lifecycle_version"
 
     //Picasso
     implementation 'com.jakewharton.picasso:picasso2-okhttp3-downloader:1.1.0'

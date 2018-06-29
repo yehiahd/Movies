@@ -27,5 +27,4 @@ data class Movie(@PrimaryKey(autoGenerate = true) @ColumnInfo(name = Constant.Da
                  @SerializedName("original_title") val originalTitle: String,
                  @SerializedName("original_language") val originalLanguage: String,
                  @SerializedName("vote_count") val voteCount: Int,
-                 @ColumnInfo(name = Constant.DataBase.SECTION_TYPE_COLUMN_NAME) var sectionType: String,
-                 @ColumnInfo(name = Constant.DataBase.IS_FAVORITE_COLUMN_NAME) var isFavorite: Boolean) : Parcelable
+                 @ColumnInfo(name = Constant.DataBase.SECTION_TYPE_COLUMN_NAME) var sectionType: String) : Parcelable

@@ -1,5 +1,6 @@
 package com.yehiahd.movies.di.activity
 
+import com.yehiahd.movies.ui.detailscreen.DetailActivity
 import com.yehiahd.movies.ui.mainscreen.MainActivity
 import dagger.Subcomponent
 
@@ -7,4 +8,6 @@ import dagger.Subcomponent
 interface ActivityComponent {
 
     fun inject(mainActivity: MainActivity)
+
+    fun inject(detailActivity: DetailActivity)
 }

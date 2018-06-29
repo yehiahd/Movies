@@ -9,7 +9,4 @@ interface IDataManager {
 
     fun getMoviesFromDb(type: String): Flowable<List<Movie>>
 
-    fun getFavoriteMovies(): Flowable<List<Movie>>
-
-
 }

@@ -17,8 +17,4 @@ class DataManager @Inject constructor(private val mApiHelper: ApiHelper, private
         return mDbHelper.getMoviesByType(type)
     }
 
-    override fun getFavoriteMovies(): Flowable<List<Movie>> {
-        return mDbHelper.getFavoriteMovies()
-    }
-
 }

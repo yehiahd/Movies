@@ -76,24 +76,10 @@ class MainActivity : BaseActivity(), OnMovieClickListener {
                 true
             }
 
-            R.id.favorite -> {
-                getFavoriteMovies()
-                true
-            }
-
             else -> false
         }
     }
 
-    private fun getFavoriteMovies() {
-        mMainViewModel.getFavoriteMovies()
-                .subscribe({
-                    if (it.isEmpty())
-                        Toast.makeText(this, "No Favorites Yet!", Toast.LENGTH_LONG).show()
-                }, {
-                    Toast.makeText(this, it.message, Toast.LENGTH_LONG).show()
-                })
-    }
 
     private fun getMoviesByType(type: String) {
         progressBar.visibility = View.VISIBLE
