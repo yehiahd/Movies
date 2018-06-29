@@ -52,6 +52,8 @@ dependencies {
     implementation "com.google.dagger:dagger-android-support:$dagger_version"
 
     //Room
+    implementation "android.arch.persistence.room:runtime:$room_version"
+    kapt "android.arch.persistence.room:compiler:$room_version"
     implementation "android.arch.persistence.room:rxjava2:$room_version"
 
     //Paging
@@ -59,6 +61,7 @@ dependencies {
 
     //ArchComponent
     implementation "android.arch.lifecycle:extensions:$lifecycle_version"
+    implementation "android.arch.lifecycle:reactivestreams:$lifecycle_version"
 
     //Picasso
     implementation 'com.jakewharton.picasso:picasso2-okhttp3-downloader:1.1.0'

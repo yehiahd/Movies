@@ -2,6 +2,7 @@ package com.yehiahd.movies.di.application
 
 import android.app.Application
 import com.yehiahd.movies.datamodel.DataManager
+import com.yehiahd.movies.datamodel.local.db.DbHelper
 import com.yehiahd.movies.datamodel.remote.ApiHelper
 import dagger.Module
 import dagger.Provides
@@ -18,10 +19,13 @@ class ApplicationModule(application: Application) {
 
     @Provides
     @PerApplication
-    fun provideDataManager(apiHelper: ApiHelper) = DataManager(apiHelper)
+    fun provideDataManager(apiHelper: ApiHelper, dbHelper: DbHelper) = DataManager(apiHelper, dbHelper)
 
     @Provides
     @PerApplication
-    fun provideApiHelper() = ApiHelper()
+    fun provideApiHelper(dbHelper: DbHelper) = ApiHelper(dbHelper)
+
+    @Provides
+    fun provideDbHelper(application: Application) = DbHelper(application)
 
 }

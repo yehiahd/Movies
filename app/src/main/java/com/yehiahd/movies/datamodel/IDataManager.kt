@@ -1,9 +1,11 @@
 package com.yehiahd.movies.datamodel
 
-import com.yehiahd.movies.model.MoviesResponse
-import io.reactivex.Observable
+import com.yehiahd.movies.model.Movie
+import io.reactivex.Flowable
 
 interface IDataManager {
 
-    fun getMoviesFromServerByType(type: String): Observable<MoviesResponse>
+    fun getMoviesFromServerByType(type: String): Flowable<List<Movie>>
+
+    fun getMoviesFromDb(type: String): Flowable<List<Movie>>
 }

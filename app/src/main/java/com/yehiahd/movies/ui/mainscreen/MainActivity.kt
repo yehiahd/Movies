@@ -15,8 +15,8 @@ import com.yehiahd.movies.model.Movie
 import com.yehiahd.movies.ui.base.BaseActivity
 import com.yehiahd.movies.ui.detailscreen.DetailScreen
 import com.yehiahd.movies.util.Constant
-import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.activity_main.*
+import org.reactivestreams.Subscription
 import javax.inject.Inject
 
 class MainActivity : BaseActivity(), OnMovieClickListener {
@@ -27,12 +27,11 @@ class MainActivity : BaseActivity(), OnMovieClickListener {
     lateinit var mainViewModelProvider: MainViewModelProvider
 
     @Inject
-    lateinit var compositeDisposable: CompositeDisposable
-
-    @Inject
     lateinit var gridLayoutManager: GridLayoutManager
 
     private lateinit var adapter: MoviesAdapter
+
+    private lateinit var subscription: Subscription
 
     override fun onCreate(savedInstanceState: Bundle?) {
         getActivityComponent().inject(mainActivity = this)
@@ -66,7 +65,6 @@ class MainActivity : BaseActivity(), OnMovieClickListener {
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        compositeDisposable.clear()
         return when (item?.itemId) {
             R.id.top_rated -> {
                 getMoviesByType(Constant.Api.TOP_RATED)
@@ -85,23 +83,22 @@ class MainActivity : BaseActivity(), OnMovieClickListener {
     private fun getMoviesByType(type: String) {
         progressBar.visibility = View.VISIBLE
         mMainViewModel.getMoviesByType(type)
-                .doOnSubscribe { compositeDisposable.add(it) }
+                .doOnSubscribe { subscription = it }
                 .subscribe({
+                    subscription.cancel()
                     adapter.update(it as ArrayList<Movie>)
                     progressBar.visibility = View.GONE
-                }, {
-                    Toast.makeText(this, (it as ANError).errorDetail, Toast.LENGTH_SHORT).show()
-                })
+                }) {
+                    if (it is ANError)
+                        Toast.makeText(this, it.errorDetail, Toast.LENGTH_SHORT).show()
+                    else
+                        Toast.makeText(this, it.message, Toast.LENGTH_SHORT).show()
+                }
     }
 
     override fun onMovieClicked(movie: Movie) {
         startActivity(Intent(this, DetailScreen::class.java)
                 .putExtra(Constant.Extra.MOVIE, movie))
-    }
-
-    override fun onPause() {
-        super.onPause()
-        compositeDisposable.clear()
     }
 
 }

@@ -15,4 +15,12 @@ object Constant {
     object Extra {
         const val MOVIE = "movie"
     }
+
+    object DataBase {
+        const val DATA_BASE_NAME = "movies_db"
+        const val TABLE_NAME = "movies_table"
+        const val ID_COLUMN_NAME = "uid"
+        const val SECTION_TYPE_COLUMN_NAME = "section_type"
+        const val IS_FAVORITE_COLUMN_NAME = "is_favorite"
+    }
 }
