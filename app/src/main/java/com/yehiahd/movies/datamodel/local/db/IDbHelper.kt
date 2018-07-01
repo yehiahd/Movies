@@ -9,4 +9,6 @@ interface IDbHelper {
 
     fun getMoviesByType(type: String): Flowable<List<Movie>>
 
+    fun deleteMoviesByType(type: String)
+
 }

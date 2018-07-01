@@ -9,4 +9,6 @@ interface IDataManager {
 
     fun getMoviesFromDb(type: String): Flowable<List<Movie>>
 
+    fun deleteMoviesByType(type: String)
+
 }

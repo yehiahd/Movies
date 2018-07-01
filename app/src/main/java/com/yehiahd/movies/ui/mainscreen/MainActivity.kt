@@ -3,6 +3,7 @@ package com.yehiahd.movies.ui.mainscreen
 import android.arch.lifecycle.ViewModelProviders
 import android.content.Intent
 import android.os.Bundle
+import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.GridLayoutManager
 import android.view.Menu
 import android.view.MenuItem
@@ -15,11 +16,13 @@ import com.yehiahd.movies.model.Movie
 import com.yehiahd.movies.ui.base.BaseActivity
 import com.yehiahd.movies.ui.detailscreen.DetailScreen
 import com.yehiahd.movies.util.Constant
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_main.*
 import org.reactivestreams.Subscription
 import javax.inject.Inject
 
-class MainActivity : BaseActivity(), OnMovieClickListener {
+class MainActivity : BaseActivity(), OnMovieClickListener, SwipeRefreshLayout.OnRefreshListener {
 
     private lateinit var mMainViewModel: MainViewModel
 
@@ -57,6 +60,7 @@ class MainActivity : BaseActivity(), OnMovieClickListener {
         }
 
         tryAgainBtn.setOnClickListener { getMoviesByType(moviesType) }
+        refreshLayout.setOnRefreshListener(this)
 
     }
 
@@ -91,6 +95,8 @@ class MainActivity : BaseActivity(), OnMovieClickListener {
         mMainViewModel.getMoviesByType(type)
                 .doOnSubscribe { subscription = it }
                 .subscribe({
+                    refreshLayout.isRefreshing = false
+
                     if (it.isEmpty()) {
                         dontKnowLayout.visibility = View.VISIBLE
                     } else {
@@ -101,6 +107,7 @@ class MainActivity : BaseActivity(), OnMovieClickListener {
                     subscription.cancel()
                     progressBar.visibility = View.GONE
                 }) {
+                    refreshLayout.isRefreshing = false
                     progressBar.visibility = View.GONE
                     if (it is ANError) {
                         if (it.errorCode == 0)
@@ -108,6 +115,13 @@ class MainActivity : BaseActivity(), OnMovieClickListener {
                     } else
                         Toast.makeText(this, it.message, Toast.LENGTH_SHORT).show()
                 }
+    }
+
+    override fun onRefresh() {
+        mMainViewModel.reloadMovies(moviesType)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe { getMoviesByType(moviesType) }
     }
 
     override fun onMovieClicked(movie: Movie) {

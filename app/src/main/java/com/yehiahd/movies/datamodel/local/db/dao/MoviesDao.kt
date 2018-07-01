@@ -16,4 +16,7 @@ interface MoviesDao {
 
     @Query("SELECT * FROM ${Constant.DataBase.TABLE_NAME} WHERE ${Constant.DataBase.SECTION_TYPE_COLUMN_NAME} LIKE :moviesSection")
     fun getMoviesBySection(moviesSection: String): Flowable<List<Movie>>
+
+    @Query("DELETE FROM ${Constant.DataBase.TABLE_NAME} WHERE ${Constant.DataBase.SECTION_TYPE_COLUMN_NAME} LIKE :type")
+    fun removeAllByType(type: String)
 }

@@ -4,6 +4,7 @@ import com.yehiahd.movies.datamodel.DataManager
 import com.yehiahd.movies.model.Movie
 import com.yehiahd.movies.ui.base.BaseViewModel
 import io.reactivex.Flowable
+import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
@@ -26,5 +27,9 @@ class MainViewModel constructor(private val dataManager: DataManager) : BaseView
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
 
+    }
+
+    fun reloadMovies(moviesType: String): Observable<Any> {
+        return Observable.fromCallable { dataManager.deleteMoviesByType(moviesType) }
     }
 }

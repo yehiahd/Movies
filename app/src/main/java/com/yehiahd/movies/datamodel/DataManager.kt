@@ -17,4 +17,7 @@ class DataManager @Inject constructor(private val mApiHelper: ApiHelper, private
         return mDbHelper.getMoviesByType(type)
     }
 
+    override fun deleteMoviesByType(type: String) {
+        mDbHelper.deleteMoviesByType(type)
+    }
 }

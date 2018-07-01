@@ -17,4 +17,10 @@ class DbHelper(context: Context) : IDbHelper {
     override fun saveMovies(movies: List<Movie>) {
         moviesDao.insertMovies(movies)
     }
+
+
+    override fun deleteMoviesByType(type: String) {
+        moviesDao.removeAllByType(type)
+    }
+
 }
